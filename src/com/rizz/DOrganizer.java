@@ -9,6 +9,7 @@ public class DOrganizer {
     private static String[] pictureExtension = {".jpg", ".jpeg", ".png", ".gif"};
     private static String[] softwareExtension = {".exe"};
     private static String[] compressedFileExtension = {".zip", ".tgz", ".tar.gz", ".tar"};
+    private static String[] videoExtension = {".mp4", ".avi", ".flv", ".mkv", ".wmv"};
 
     public static void main(String[] args) {
         //Checking if Downloads folder exists
@@ -23,11 +24,13 @@ public class DOrganizer {
         makeDirectory("Software");
         makeDirectory("CompressedFiles");
         makeDirectory("Docs");
+        makeDirectory("Videos");
 
         //Organizing downloads directory
         organizeDir(pictureExtension, "Pictures");
         organizeDir(softwareExtension, "Software");
         organizeDir(compressedFileExtension, "CompressedFiles");
+        organizeDir(videoExtension, "Videos");
 
         organizeDocuments("Docs");
     }
