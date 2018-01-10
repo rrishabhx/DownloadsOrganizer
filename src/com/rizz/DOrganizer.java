@@ -32,13 +32,20 @@ public class DOrganizer {
         organizeDir(compressedFileExtension, "CompressedFiles");
         organizeDir(videoExtension, "Videos");
 
-        organizeDocuments("Docs");
+        organizeDocuments();
+
+        System.out.println("\n\n--------------------------------------------------");
+        System.out.println("|************* DOWNLOADS ORGANIZED **************|");
+        System.out.println("--------------------------------------------------\n");
+
     }
 
 
     private static void makeDirectory(String dirname) {
         File folder = new File(downloadsPath + "\\" + dirname);
-        folder.mkdir();
+        if (!folder.mkdir() && !folder.exists()) {
+            System.err.println("Unable to create " + dirname + " directory.");
+        }
     }
 
 
@@ -51,7 +58,9 @@ public class DOrganizer {
                 String filename = f.getName();
                 for (String extension : fileExtension) {
                     if (filename.endsWith(extension)) {
-                        f.renameTo(new File(downloadsPath + "\\" + destination + "\\" + filename));
+                        if (!f.renameTo(new File(downloadsPath + "\\" + destination + "\\" + filename))) {
+                            System.err.println("Unable to move " + filename + " to " + destination);
+                        }
                     }
                 }
             }
@@ -61,7 +70,7 @@ public class DOrganizer {
     }
 
 
-    private static void organizeDocuments(String destination) {
+    private static void organizeDocuments() {
         File downloadsFolder = new File(downloadsPath);
         File[] listOfFiles = downloadsFolder.listFiles();
 
@@ -69,7 +78,9 @@ public class DOrganizer {
             if (f.isFile()) {
                 String filename = f.getName();
 
-                f.renameTo(new File(downloadsPath + "\\" + destination + "\\" + filename));
+                if (!f.renameTo(new File(downloadsPath + "\\" + "Docs" + "\\" + filename))) {
+                    System.err.println("Unable to move " + filename + " to " + "Docs");
+                }
 
             }
         }
