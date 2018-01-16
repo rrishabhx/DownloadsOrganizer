@@ -11,6 +11,7 @@ A simple **Downloads** folder organizer for Windows and Linux based systems.
 * Compressed Files
 * Videos
 * Docs
+* Music
 
 
 ### Prerequisites
