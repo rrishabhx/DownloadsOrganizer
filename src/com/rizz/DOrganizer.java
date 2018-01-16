@@ -26,6 +26,7 @@ public class DOrganizer {
     private static String[] softwareExtension = {".exe"};
     private static String[] compressedFileExtension = {".zip", ".tgz", ".tar.gz", ".tar"};
     private static String[] videoExtension = {".mp4", ".avi", ".flv", ".mkv", ".wmv"};
+    private static String[] audioExtension = {".mp3", ".wav", ".aif", ".mpa", ".wma", ".wpl"};
 
     public static void main(String[] args) {
         //Printing OS
@@ -43,12 +44,14 @@ public class DOrganizer {
         makeDirectory("CompressedFiles");
         makeDirectory("Docs");
         makeDirectory("Videos");
+        makeDirectory("Music");
 
         //Organizing downloads directory
         organizeDir(pictureExtension, "Pictures");
         organizeDir(softwareExtension, "Software");
         organizeDir(compressedFileExtension, "CompressedFiles");
         organizeDir(videoExtension, "Videos");
+        organizeDir(audioExtension,"Music");
 
         organizeDocuments();
 
