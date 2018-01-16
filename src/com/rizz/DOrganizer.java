@@ -22,10 +22,10 @@ public class DOrganizer {
         }
     }
 
-    private static String[] pictureExtension = {".jpg", ".jpeg", ".png", ".gif"};
-    private static String[] softwareExtension = {".exe"};
-    private static String[] compressedFileExtension = {".zip", ".tgz", ".tar.gz", ".tar"};
-    private static String[] videoExtension = {".mp4", ".avi", ".flv", ".mkv", ".wmv"};
+    private static String[] pictureExtension = {".jpg", ".jpeg", ".png", ".gif", ".bmp"};
+    private static String[] softwareExtension = {".exe", ".jar", ".bat", ".py", ".sh", ".pl", ".msi", ".ini"};
+    private static String[] compressedFileExtension = {".zip", ".tgz", ".tar.gz", ".tar", ".bz2", ".7z", ".deb", ".rar", ".rpm", ".pkg"};
+    private static String[] videoExtension = {".mp4", ".avi", ".flv", ".mkv", ".wmv", ".3gp", ".mpeg", ".mpg", ".h264"};
     private static String[] audioExtension = {".mp3", ".wav", ".aif", ".mpa", ".wma", ".wpl"};
 
     public static void main(String[] args) {
