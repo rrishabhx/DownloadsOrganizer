@@ -6,12 +6,12 @@ A simple **Downloads** folder organizer for Windows and Linux based systems.
 * ### Linux: `/home/userName/Downloads/`
 
 #### All files in **Downloads** folder will be organized in the following directory structure:
-* Pictures
-* Software
-* Compressed Files
-* Videos
-* Docs
-
+* **Pictures**  `{.jpg, .jpeg, .png, .gif, .bmp}`
+* **Software**  `{.exe, .jar, .bat, .py, .sh, .pl, .msi, .ini, .run, .out, .deb, .rpm}`
+* **Compressed Files**  `{.zip, .tgz, .tar.gz, .tar, .bz2, .7z, .rar, .pkg}`
+* **Videos**  `{.mp4, .avi, .flv, .mkv, .wmv, .3gp, .mpeg, .mpg, .h264}`
+* **Music** `{.mp3, .wav, .aif, .mpa, .wma, .wpl}`
+* **Docs**  `{$RemainingFiles}`
 
 ### Prerequisites
 
