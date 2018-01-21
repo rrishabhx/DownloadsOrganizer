@@ -16,7 +16,7 @@ public class DOrganizer {
                 downloadsPath = "C:\\Users\\" + System.getProperty("user.name") + "\\Downloads";
                 break;
             default:
-                System.out.println("Sorry... This program currently supports Windows and Linux only.");
+                System.out.println("xxx Sorry... This program currently supports Windows and Linux only. xxx");
                 System.exit(1);
                 break;
         }
@@ -29,12 +29,13 @@ public class DOrganizer {
     private static String[] audioExtension = {".mp3", ".wav", ".aif", ".mpa", ".wma", ".wpl"};
 
     public static void main(String[] args) {
+        System.out.println(">>> Going to organize: \"" + downloadsPath + "\"");
         //Printing OS
-        System.out.println("YOU ARE USING: " + myOS);
+        System.out.println(">>> Operating System: " + myOS);
         //Checking if Downloads folder exists
         File downloadsFolder = new File(downloadsPath);
         if (!downloadsFolder.isDirectory()) {
-            System.err.println("Downloads directory doesn't exist");
+            System.err.println("xxx Downloads directory doesn't exist xxx");
             System.exit(1);
         }
 
@@ -47,17 +48,16 @@ public class DOrganizer {
         makeDirectory("Music");
 
         //Organizing downloads directory
+        System.out.println("\n>>> Organizing folders:~ ");
         organizeDir(pictureExtension, "Pictures");
         organizeDir(softwareExtension, "Software");
         organizeDir(compressedFileExtension, "CompressedFiles");
         organizeDir(videoExtension, "Videos");
-        organizeDir(audioExtension,"Music");
+        organizeDir(audioExtension, "Music");
 
         organizeDocuments();
 
-        System.out.println("\n\n--------------------------------------------------");
-        System.out.println("|************* DOWNLOADS ORGANIZED **************|");
-        System.out.println("--------------------------------------------------\n");
+        System.out.println("\n>>> \"" + downloadsPath + "\" ORGANIZED <<<\n");
 
     }
 
@@ -81,7 +81,7 @@ public class DOrganizer {
             folder = new File(downloadsPath + "/" + dirname);
         }
         if (!folder.mkdir() && !folder.exists()) {
-            System.err.println("Unable to create " + dirname + " directory.");
+            System.err.println("xxx Unable to create " + dirname + " directory. xxx");
         }
     }
 
@@ -90,6 +90,7 @@ public class DOrganizer {
         File downloadsFolder = new File(downloadsPath);
         File[] listOfFiles = downloadsFolder.listFiles();
         String destinationPath = null;
+        boolean fileMoveStatus = true;
 
         if (myOS.equals("Windows")) {
             destinationPath = downloadsPath + "\\" + destination + "\\";
@@ -106,13 +107,16 @@ public class DOrganizer {
             for (String extension : fileExtension) {
                 if (filename.endsWith(extension)) {
                     if (!f.renameTo(new File(destinationPath + filename))) {
-                        System.err.println("Unable to move " + filename + " to " + destination);
+                        System.out.println("xxx Unable to move " + filename + " to " + destination + " xxx");
+                        fileMoveStatus = false;
                     }
                 }
             }
 
-
         }
+
+
+        System.out.println(">>> " + destination + ": " + (fileMoveStatus ? "SUCCESS" : "FAILURE"));
 
     }
 
@@ -136,7 +140,7 @@ public class DOrganizer {
             String filename = f.getName();
 
             if (!f.renameTo(new File(destinationPath + filename))) {
-                System.err.println("Unable to move " + filename + " to " + "Docs");
+                System.out.println("xxx Unable to move " + filename + " to " + "Docs. xxx");
             }
 
         }
