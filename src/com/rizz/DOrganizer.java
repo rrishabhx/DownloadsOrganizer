@@ -45,7 +45,7 @@ public class DOrganizer {
         makeDirectory("CompressedFiles");
         makeDirectory("Docs");
         makeDirectory("Videos");
-        makeDirectory("Music");
+        makeDirectory("Audio");
 
         //Organizing downloads directory
         System.out.println("\n>>> Organizing folders:~ ");
@@ -53,7 +53,7 @@ public class DOrganizer {
         organizeDir(softwareExtension, "Software");
         organizeDir(compressedFileExtension, "CompressedFiles");
         organizeDir(videoExtension, "Videos");
-        organizeDir(audioExtension, "Music");
+        organizeDir(audioExtension, "Audio");
 
         organizeDocuments();
 
@@ -125,6 +125,7 @@ public class DOrganizer {
         File downloadsFolder = new File(downloadsPath);
         File[] listOfFiles = downloadsFolder.listFiles();
         String destinationPath = null;
+        boolean fileMoveStatus = true;
 
         if (myOS.equals("Windows")) {
             destinationPath = downloadsPath + "\\" + "Docs" + "\\";
@@ -141,9 +142,13 @@ public class DOrganizer {
 
             if (!f.renameTo(new File(destinationPath + filename))) {
                 System.out.println("xxx Unable to move " + filename + " to " + "Docs. xxx");
+                fileMoveStatus = false;
             }
 
         }
+
+        System.out.println(">>> " + "Docs" + ": " + (fileMoveStatus ? "SUCCESS" : "FAILURE"));
+
 
     }
 
