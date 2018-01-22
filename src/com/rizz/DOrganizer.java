@@ -1,16 +1,20 @@
 package com.rizz;
 
 import java.io.File;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.HashSet;
 
 public class DOrganizer {
 
+    private static final HashMap<String, HashSet<String>> fileTypeMap = new HashMap<>();
     private static String myOS = findMyOS();
     private static String downloadsPath;
-    private static String[] pictureExtension = {".jpg", ".jpeg", ".png", ".gif", ".bmp"};
-    private static String[] softwareExtension = {".exe", ".jar", ".bat", ".py", ".sh", ".pl", ".msi", ".ini", ".run", ".out", ".deb", ".rpm"};
-    private static String[] archiveExtension = {".zip", ".tgz", ".tar.gz", ".tar", ".bz2", ".7z", ".rar", ".pkg"};
-    private static String[] videoExtension = {".mp4", ".avi", ".flv", ".mkv", ".wmv", ".3gp", ".mpeg", ".mpg", ".h264"};
-    private static String[] audioExtension = {".mp3", ".wav", ".aif", ".mpa", ".wma", ".wpl"};
+    private static HashSet<String> pictureExtensionSet = new HashSet<>(Arrays.asList(".jpg", ".jpeg", ".png", ".gif", ".bmp"));
+    private static HashSet<String> softwareExtensionSet = new HashSet<>(Arrays.asList(".exe", ".jar", ".bat", ".py", ".sh", ".pl", ".msi", ".ini", ".run", ".out", ".deb", ".rpm"));
+    private static HashSet<String> archiveExtensionSet = new HashSet<>(Arrays.asList(".zip", ".tgz", ".tar.gz", ".tar", ".bz2", ".7z", ".rar", ".pkg"));
+    private static HashSet<String> videoExtensionSet = new HashSet<>(Arrays.asList(".mp4", ".avi", ".flv", ".mkv", ".wmv", ".3gp", ".mpeg", ".mpg", ".h264"));
+    private static HashSet<String> audioExtensionSet = new HashSet<>(Arrays.asList(".mp3", ".wav", ".aif", ".mpa", ".wma", ".wpl"));
 
     static {
         switch (myOS) {
@@ -25,6 +29,13 @@ public class DOrganizer {
                 System.exit(1);
                 break;
         }
+
+        //Populating fileTypeMap
+        fileTypeMap.put("Pictures", pictureExtensionSet);
+        fileTypeMap.put("Software", softwareExtensionSet);
+        fileTypeMap.put("Archives", archiveExtensionSet);
+        fileTypeMap.put("Videos", videoExtensionSet);
+        fileTypeMap.put("Audios", audioExtensionSet);
     }
 
     public static void main(String[] args) {
@@ -48,13 +59,7 @@ public class DOrganizer {
 
         //Organizing downloads directory
         System.out.println("\n>>> Organizing folders:~ ");
-        organizeDir(pictureExtension, "Pictures");
-        organizeDir(softwareExtension, "Software");
-        organizeDir(archiveExtension, "Archives");
-        organizeDir(videoExtension, "Videos");
-        organizeDir(audioExtension, "Audio");
-
-        organizeDocuments();
+        runOrganizer();
 
         System.out.println("\n>>> \"" + downloadsPath + "\" ORGANIZED <<<\n");
 
@@ -84,6 +89,17 @@ public class DOrganizer {
         }
     }
 
+
+    private static void runOrganizer() {
+        File downloadsFolder = new File(downloadsPath);
+        File[] listOfFiles = downloadsFolder.listFiles();
+
+
+        for (File f : listOfFiles) {
+            String filename = f.getName();
+        }
+
+    }
 
     private static void organizeDir(String[] fileExtension, String destination) {
         File downloadsFolder = new File(downloadsPath);
