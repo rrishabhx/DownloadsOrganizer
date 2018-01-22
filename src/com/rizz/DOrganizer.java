@@ -24,7 +24,7 @@ public class DOrganizer {
 
     private static String[] pictureExtension = {".jpg", ".jpeg", ".png", ".gif", ".bmp"};
     private static String[] softwareExtension = {".exe", ".jar", ".bat", ".py", ".sh", ".pl", ".msi", ".ini", ".run", ".out", ".deb", ".rpm"};
-    private static String[] compressedFileExtension = {".zip", ".tgz", ".tar.gz", ".tar", ".bz2", ".7z", ".rar", ".pkg"};
+    private static String[] archiveExtension = {".zip", ".tgz", ".tar.gz", ".tar", ".bz2", ".7z", ".rar", ".pkg"};
     private static String[] videoExtension = {".mp4", ".avi", ".flv", ".mkv", ".wmv", ".3gp", ".mpeg", ".mpg", ".h264"};
     private static String[] audioExtension = {".mp3", ".wav", ".aif", ".mpa", ".wma", ".wpl"};
 
@@ -42,7 +42,7 @@ public class DOrganizer {
         //Creating directory structure inside downloads
         makeDirectory("Pictures");
         makeDirectory("Software");
-        makeDirectory("CompressedFiles");
+        makeDirectory("Archives");
         makeDirectory("Docs");
         makeDirectory("Videos");
         makeDirectory("Audio");
@@ -51,7 +51,7 @@ public class DOrganizer {
         System.out.println("\n>>> Organizing folders:~ ");
         organizeDir(pictureExtension, "Pictures");
         organizeDir(softwareExtension, "Software");
-        organizeDir(compressedFileExtension, "CompressedFiles");
+        organizeDir(archiveExtension, "Archives");
         organizeDir(videoExtension, "Videos");
         organizeDir(audioExtension, "Audio");
 
