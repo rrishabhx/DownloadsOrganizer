@@ -6,6 +6,11 @@ public class DOrganizer {
 
     private static String myOS = findMyOS();
     private static String downloadsPath;
+    private static String[] pictureExtension = {".jpg", ".jpeg", ".png", ".gif", ".bmp"};
+    private static String[] softwareExtension = {".exe", ".jar", ".bat", ".py", ".sh", ".pl", ".msi", ".ini", ".run", ".out", ".deb", ".rpm"};
+    private static String[] archiveExtension = {".zip", ".tgz", ".tar.gz", ".tar", ".bz2", ".7z", ".rar", ".pkg"};
+    private static String[] videoExtension = {".mp4", ".avi", ".flv", ".mkv", ".wmv", ".3gp", ".mpeg", ".mpg", ".h264"};
+    private static String[] audioExtension = {".mp3", ".wav", ".aif", ".mpa", ".wma", ".wpl"};
 
     static {
         switch (myOS) {
@@ -21,12 +26,6 @@ public class DOrganizer {
                 break;
         }
     }
-
-    private static String[] pictureExtension = {".jpg", ".jpeg", ".png", ".gif", ".bmp"};
-    private static String[] softwareExtension = {".exe", ".jar", ".bat", ".py", ".sh", ".pl", ".msi", ".ini", ".run", ".out", ".deb", ".rpm"};
-    private static String[] archiveExtension = {".zip", ".tgz", ".tar.gz", ".tar", ".bz2", ".7z", ".rar", ".pkg"};
-    private static String[] videoExtension = {".mp4", ".avi", ".flv", ".mkv", ".wmv", ".3gp", ".mpeg", ".mpg", ".h264"};
-    private static String[] audioExtension = {".mp3", ".wav", ".aif", ".mpa", ".wma", ".wpl"};
 
     public static void main(String[] args) {
         System.out.println(">>> Going to organize: \"" + downloadsPath + "\"");
@@ -107,8 +106,11 @@ public class DOrganizer {
             for (String extension : fileExtension) {
                 if (filename.endsWith(extension)) {
                     if (!f.renameTo(new File(destinationPath + filename))) {
-                        System.out.println("xxx Unable to move " + filename + " to " + destination + " xxx");
-                        fileMoveStatus = false;
+                        //Checking if the file is not DownloadsOrganizer executable
+                        if (!filename.equals("DownloadsOrganizer.jar")) {
+                            System.out.println("xxx Unable to move " + filename + " to " + destination + " xxx");
+                            fileMoveStatus = false;
+                        }
                     }
                 }
             }
@@ -141,8 +143,12 @@ public class DOrganizer {
             String filename = f.getName();
 
             if (!f.renameTo(new File(destinationPath + filename))) {
-                System.out.println("xxx Unable to move " + filename + " to " + "Docs. xxx");
-                fileMoveStatus = false;
+                //Checking if the file is not DownloadsOrganizer executable
+                if (!filename.equals("DownloadsOrganizer.jar")) {
+                    System.out.println("xxx Unable to move " + filename + " to " + "Docs. xxx");
+                    fileMoveStatus = false;
+                }
+
             }
 
         }
