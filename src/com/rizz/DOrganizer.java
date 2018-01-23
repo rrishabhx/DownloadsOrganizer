@@ -12,11 +12,12 @@ public class DOrganizer {
     private static String myOS = findMyOS();
     private static String downloadsPath;
     private static String downloadsPathString;
-    private static HashSet<String> pictureExtensionSet = new HashSet<>(Arrays.asList(".jpg", ".jpeg", ".png", ".gif", ".bmp"));
-    private static HashSet<String> softwareExtensionSet = new HashSet<>(Arrays.asList(".exe", ".jar", ".bat", ".py", ".sh", ".pl", ".msi", ".ini", ".run", ".out", ".deb", ".rpm"));
-    private static HashSet<String> archiveExtensionSet = new HashSet<>(Arrays.asList(".zip", ".tgz", ".tar.gz", ".tar", ".bz2", ".7z", ".rar", ".pkg"));
-    private static HashSet<String> videoExtensionSet = new HashSet<>(Arrays.asList(".mp4", ".avi", ".flv", ".mkv", ".wmv", ".3gp", ".mpeg", ".mpg", ".h264"));
-    private static HashSet<String> audioExtensionSet = new HashSet<>(Arrays.asList(".mp3", ".wav", ".aif", ".mpa", ".wma", ".wpl"));
+    private static String SLASH;
+    private static HashSet<String> pictureExtensionSet = new HashSet<>(Arrays.asList("jpg", "jpeg", "png", "gif", "bmp"));
+    private static HashSet<String> softwareExtensionSet = new HashSet<>(Arrays.asList("exe", "jar", "bat", "py", "sh", "pl", "msi", "ini", "run", "out", "deb", "rpm"));
+    private static HashSet<String> archiveExtensionSet = new HashSet<>(Arrays.asList("zip", "tgz", "gz", "tar", "bz2", "7z", "rar", "pkg"));
+    private static HashSet<String> videoExtensionSet = new HashSet<>(Arrays.asList("mp4", "avi", "flv", "mkv", "wmv", "3gp", "mpeg", "mpg", "h264"));
+    private static HashSet<String> audioExtensionSet = new HashSet<>(Arrays.asList("mp3", "wav", "aif", "mpa", "wma", "wpl"));
 
     private static HashMap<String, HashSet<String>> fileTypeMap = new HashMap<>();
 
@@ -26,10 +27,12 @@ public class DOrganizer {
             case "Linux":
                 downloadsPath = System.getProperty("user.home") + "/Downloads";
                 downloadsPathString = System.getProperty("user.home") + "/Downloads/";
+                SLASH = "/";
                 break;
             case "Windows":
                 downloadsPath = "C:\\Users\\" + System.getProperty("user.name") + "\\Downloads";
                 downloadsPathString = "C:\\Users\\" + System.getProperty("user.name") + "\\Downloads\\";
+                SLASH = "\\";
                 break;
             default:
                 System.out.println("xxx Sorry... This program currently supports Windows and Linux only. xxx");
@@ -100,11 +103,13 @@ public class DOrganizer {
     private static void runOrganizer() {
         File downloadsFolder = new File(downloadsPath);
         File[] listOfFiles = downloadsFolder.listFiles();
-        boolean isDocumentFile = true;
-        boolean moveStatus = false;
 
 
         for (File f : listOfFiles) {
+            boolean isDocumentFile = true;
+            boolean moveStatus = false;
+
+            //Checking if it's a folder
             if (!f.isFile()) {
                 continue;
             }
@@ -112,19 +117,20 @@ public class DOrganizer {
             String filename = f.getName();
             String fileExtension = FilenameUtils.getExtension(filename);
 
-            for (String type : fileTypeMap.keySet()) {
-                if (fileTypeMap.get(type).contains(fileExtension)) {
-                    String destinationPath = downloadsPathString + type;
-                    moveStatus = moveFile(destinationPath, f);
+            for (String fileTypeFolder : fileTypeMap.keySet()) {
+                if (fileTypeMap.get(fileTypeFolder).contains(fileExtension)) {
+                    String absoluteFilePath = downloadsPathString + fileTypeFolder + SLASH + filename;
+                    moveStatus = moveFile(absoluteFilePath, f);
                     isDocumentFile = false;
                     break;
                 }
             }
             if (isDocumentFile) {
-                moveStatus = moveFile("Docs", f);
+                String absoluteDocumentPath = downloadsPathString + "Docs" + SLASH + filename;
+                moveStatus = moveFile(absoluteDocumentPath, f);
             }
 
-            if (moveStatus) {
+            if (moveStatus && !f.getName().equals("DownloadsOrganizer.jar")) {
                 System.out.println("\t * " + filename);
             }
         }
@@ -132,11 +138,11 @@ public class DOrganizer {
     }
 
 
-    private static boolean moveFile(String destinationPath, File filename) {
-        if (!filename.renameTo(new File(destinationPath))) {
+    private static boolean moveFile(String absoluteFilePath, File file) {
+        if (!file.renameTo(new File(absoluteFilePath))) {
             //Checking if the file is not DownloadsOrganizer executable
-            if (!filename.getName().equals("DownloadsOrganizer.jar")) {
-                System.err.println("xxx Unable to move " + filename + " to " + destinationPath + " xxx");
+            if (!file.getName().equals("DownloadsOrganizer.jar")) {
+                System.err.println("xxx Unable to move " + file + " to " + absoluteFilePath + " xxx");
                 return false;
             }
         }
