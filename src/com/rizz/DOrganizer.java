@@ -65,7 +65,7 @@ public class DOrganizer {
         makeDirectory("Archives");
         makeDirectory("Docs");
         makeDirectory("Videos");
-        makeDirectory("Audio");
+        makeDirectory("Audios");
 
         //Organizing downloads directory
         System.out.println("\n>>> Organizing files:~ ");
