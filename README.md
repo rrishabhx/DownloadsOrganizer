@@ -23,6 +23,53 @@ Download `.jar` file of latest version from **releases**.
 ### Run
 Run `DownloadsOrganizer.jar` file
 
+### Example
+#### Before:
+```
+Downloads
+│   ├── pic1.jpg
+│   ├── pic2.gif
+│   ├── chrome.exe
+│   ├── executable.msi
+│   ├── sheets.zip
+│   ├── Game_of_thrones_S0801.mp4
+│   ├── Seinfield_S0101.flv
+│   ├── Not Afraid_Eminem.mp3
+│   ├── book.pdf
+│   ├── file.docx
+│   ├── presentation.ppt
+│   ├── xFolder
+│   │   └── xFile  
+```
+
+#### After:
+```
+Downloads
+│   ├── Archives
+│   │   └── sheets.zip
+|   |
+│   ├── Audios
+│   │   └── Not Afraid_Eminem.mp3
+|   |
+│   ├── Docs
+│   │   ├── book.pdf
+│   │   ├── file.docx
+│   │   └── presentation.ppt
+|   |
+│   ├── Pictures
+│   │   ├── pic1.jpg
+│   │   └── pic2.gif
+|   |
+│   ├── Software
+│   │   ├── chrome.exe
+│   │   └── executable.msi
+|   |
+│   ├── Videos
+│   │   ├── Game_of_thrones_S0801.mp4
+│   │   └── Seinfield_S0101.flv
+│   ├── xFolder
+│   │   └── xFile
+```
 
 #### NOTE:
 Sub-directories inside **Downloads** won't be organized.
