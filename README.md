@@ -1,6 +1,8 @@
 # DownloadsOrganizer
 A simple **Downloads** folder organizer for Windows and Linux based systems.
 
+![Alt Text](raw/DO.gif)
+
 ## Default Downloads Path
 * ### Windows: `C:\Users\userName\Downloads\`
 * ### Linux: `/home/userName/Downloads/`
@@ -67,6 +69,7 @@ Downloads
 │   ├── Videos
 │   │   ├── Game_of_thrones_S0801.mp4
 │   │   └── Seinfield_S0101.flv
+|   |
 │   ├── xFolder
 │   │   └── xFile
 ```
