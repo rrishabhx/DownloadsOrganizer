@@ -1,11 +1,12 @@
 # DownloadsOrganizer
-A simple **Downloads** folder organizer for Windows and Linux based systems.
+A simple **Downloads** folder organizer for Windows, Linux and MacOS.
 
 ![Alt Text](raw/DO.gif)
 
 ## Default Downloads Path
 * ### Windows: `C:\Users\userName\Downloads\`
 * ### Linux: `/home/userName/Downloads/`
+* ### Mac: ` /Users/username/Downloads/`
 
 #### All files in **Downloads** folder will be organized in the following directory structure:
 * **Pictures**  `{.jpg, .jpeg, .png, .gif, .bmp}`
@@ -20,7 +21,7 @@ A simple **Downloads** folder organizer for Windows and Linux based systems.
 * JRE 8
 
 ### Installing
-Download `.jar` file of latest version from **releases**.
+Download `.jar` file of latest version from [releases](https://github.com/risabhRizz/DownloadsOrganizer/releases)
 
 ### Run
 Run `DownloadsOrganizer.jar` file
