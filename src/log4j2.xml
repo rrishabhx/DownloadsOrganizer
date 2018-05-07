@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="INFO">
+    <Appenders>
+        <RollingFile filePattern="./.dOlogs/dO.%i.log" name="RootLogger" fileName="./.dOlogs/dO.log">
+            <Policies>
+                <SizeBasedTriggeringPolicy size="10240KB"/>
+            </Policies>
+            <PatternLayout>
+                <pattern>[%d{MMM dd HH:mm:ss}] %-5p (%F:%L) - %m%n</pattern>
+            </PatternLayout>
+            <DefaultRolloverStrategy fileIndex="min" max="10"/>
+        </RollingFile>
+    </Appenders>
+    <Loggers>
+        <Root level="INFO">
+            <AppenderRef ref="RootLogger"/>
+        </Root>
+    </Loggers>
+</Configuration>
